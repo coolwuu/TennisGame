@@ -10,27 +10,21 @@ namespace TennisGame
 
     public class TennisGameTest
     {
-        private Game TennisGame;
+        private Game _tennisGame;
 
         [Test]
         public void StartGame_Score_should_be_LoveAll()
         {
-            var tennisGame = InitialGame();
-
-            var actual = tennisGame.ShowScore();
-            Assert.AreEqual("Love All", actual);
+            _tennisGame = InitialGame();
+            CurrentScoreIs(_tennisGame, "Love All");
         }
 
-        [Test]
+        [Test] 
         public void A_Get1stPoint_Score_should_be_Fifteen_All()
         {
-            var tennisGame = InitialGame();
-
-            tennisGame.FirstPlayerScore();
-            var actual = tennisGame.ShowScore();
-
-            //assert
-            Assert.AreEqual("Fifteen Love", actual);
+            _tennisGame = InitialGame();
+            _tennisGame.FirstPlayerScore();
+            CurrentScoreIs(_tennisGame, "Fifteen Love");
         }
 
         private static Game InitialGame()
@@ -39,6 +33,12 @@ namespace TennisGame
             Player b = new Player { Name = "b" };
             Game tennisGame = new Game(a, b);
             return tennisGame;
+        }
+
+        private static void CurrentScoreIs(Game tennisGame, string expected)
+        {
+            var actual = tennisGame.ShowScore();
+            Assert.AreEqual(expected, actual);
         }
     }
 }
