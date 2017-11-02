@@ -48,6 +48,7 @@ namespace TennisGame
         {
             _tennisGame = InitialGame();
             A_Score(3);
+            B_Score(3);
             CurrentScoreIs(_tennisGame, "Deuce");
         }
 
@@ -71,6 +72,11 @@ namespace TennisGame
         {
             for(var i = 1; i <= times;i++)
                 _tennisGame.FirstPlayerWinAPoint();
+        }
+        private void B_Score(int times)
+        {
+            for(var i = 1; i <= times;i++)
+                _tennisGame.SecondPlayerWinAPoint();
         }
     }
 }
