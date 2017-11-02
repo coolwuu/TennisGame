@@ -14,11 +14,11 @@ namespace TennisGame
         }
         public string ShowScore()
         {
-            if (_firstPlayer.ScoringTimes == 0 && _secondPlayer.ScoringTimes == 0)
+            if (IsNewGame())
                 return "Love All";
-            if (_firstPlayer.ScoringTimes >= 3 && _secondPlayer.ScoringTimes >= 3)
+            if (IsLateGame())
             {
-                if (_firstPlayer.ScoringTimes == _secondPlayer.ScoringTimes)
+                if (SameScore())
                 {
                     return "Deuce";
                 }
@@ -27,21 +27,52 @@ namespace TennisGame
             return _firstPlayer.Score() + " " + _secondPlayer.Score();
         }
 
+        private bool SameScore()
+        {
+            return _firstPlayer.ScoringTimes == _secondPlayer.ScoringTimes;
+        }
+
+        private bool IsLateGame()
+        {
+            return _firstPlayer.ScoringTimes >= 3 && _secondPlayer.ScoringTimes >= 3;
+        }
+
+        private bool IsNewGame()
+        {
+            return _firstPlayer.ScoringTimes == 0 && _secondPlayer.ScoringTimes == 0;
+        }
+
         private string LateGameLogic()
         {
-            if (_firstPlayer.ScoringTimes - _secondPlayer.ScoringTimes == 1)
+            if (FirstPlayerAdvantage())
             {
                 return "Advantage " + _firstPlayer.Name;
             }
-            if (_secondPlayer.ScoringTimes - _firstPlayer.ScoringTimes == 1)
+            if (SecondPlayerAdvantage())
             {
                 return "Advantage " + _secondPlayer.Name;
             }
-            if (_firstPlayer.ScoringTimes - _secondPlayer.ScoringTimes == 2)
-            {
-                return "Game " + _firstPlayer.Name;
-            }
+            return _firstPlayer.ScoringTimes > _secondPlayer.ScoringTimes ? FirstPlayerWon() : SecondPlayerWon();
+        }
+
+        private string SecondPlayerWon()
+        {
             return "Game " + _secondPlayer.Name;
+        }
+
+        private string FirstPlayerWon()
+        {
+            return "Game " + _firstPlayer.Name;
+        }
+
+        private bool SecondPlayerAdvantage()
+        {
+            return _secondPlayer.ScoringTimes - _firstPlayer.ScoringTimes == 1;
+        }
+
+        private bool FirstPlayerAdvantage()
+        {
+            return _firstPlayer.ScoringTimes - _secondPlayer.ScoringTimes == 1;
         }
 
         public void FirstPlayerWinAPoint()
