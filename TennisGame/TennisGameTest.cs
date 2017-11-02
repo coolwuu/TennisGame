@@ -10,15 +10,15 @@ namespace TennisGame
 
     public class TennisGameTest
     {
-        Game tennisGame = new Game();
-        Player a = new Player { Name = "a" };
-        Player b = new Player { Name = "b" };
-
+       
         [Test]
         public void StartGame_Score_should_be_LoveAll()
         {
+            Player a = new Player { Name = "a" };
+            Player b = new Player { Name = "b" };
+            Game tennisGame = new Game(a, b);
             //act
-            var actual = tennisGame.ShowScore(a, b);
+            var actual = tennisGame.ShowScore();
 
             //assert
             Assert.AreEqual("Love All", actual);
@@ -27,11 +27,15 @@ namespace TennisGame
         [Test]
         public void A_Get1stPoint_Score_should_be_Fifteen_All()
         {
+            Player a = new Player { Name = "a" };
+            Player b = new Player { Name = "b" };
+            Game tennisGame = new Game(a, b);
             //act
-            var actual = tennisGame.ShowScore(a, b);
+            a.WonAPoint();
+            var actual = tennisGame.ShowScore();
 
             //assert
-            Assert.AreEqual("Fifteen All", actual);
+            Assert.AreEqual("Fifteen Love", actual);
         }
     }
 }
