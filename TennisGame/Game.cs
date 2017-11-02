@@ -20,7 +20,7 @@ namespace TennisGame
             return _firstPlayer.Score() + " " + _secondPlayer.Score();
         }
 
-        public void FirstPlayerScore()
+        public void FirstPlayerWinAPoint()
         {
             _firstPlayer.ScoringTimes += 1;
         }
