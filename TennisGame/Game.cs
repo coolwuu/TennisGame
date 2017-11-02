@@ -6,7 +6,7 @@ namespace TennisGame
     {
         public string ShowScore(Player a, Player b)
         {
-            throw new NotImplementedException();
+            return "Love All";
         }
     }
 }
