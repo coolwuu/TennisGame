@@ -23,7 +23,7 @@ namespace TennisGame
         public void A_Get1stPoint_Score_should_be_Fifteen_Love()
         {
             _tennisGame = InitialGame();
-            _tennisGame.FirstPlayerWinAPoint();
+            A_Score(1);
             CurrentScoreIs(_tennisGame, "Fifteen Love");
         }
 
@@ -31,8 +31,7 @@ namespace TennisGame
         public void A_Get2ndPoint_Score_should_be_Thirty_Love()
         {
             _tennisGame = InitialGame();
-            _tennisGame.FirstPlayerWinAPoint();
-            _tennisGame.FirstPlayerWinAPoint();
+            A_Score(2);
             CurrentScoreIs(_tennisGame, "Thirty Love");
         }
 
@@ -48,6 +47,12 @@ namespace TennisGame
         {
             var actual = tennisGame.ShowScore();
             Assert.AreEqual(expected, actual);
+        }
+
+        private void A_Score(int times)
+        {
+            for(var i = 1; i <= times;i++)
+                _tennisGame.FirstPlayerWinAPoint();
         }
     }
 }
