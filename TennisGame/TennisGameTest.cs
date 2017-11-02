@@ -52,12 +52,21 @@ namespace TennisGame
             CurrentScoreIs(_tennisGame, "Deuce");
         }
 
+        [Test]
+        public void When_A_4Points_B_3Points_Score_should_be_Advantage_A()
+        {
+            _tennisGame = InitialGame();
+            A_Score(4);
+            B_Score(3);
+            CurrentScoreIs(_tennisGame, "Advantage A");
+        }
+
 
 
         private static Game InitialGame()
         {
-            Player a = new Player { Name = "a" };
-            Player b = new Player { Name = "b" };
+            Player a = new Player { Name = "A" };
+            Player b = new Player { Name = "B" };
             Game tennisGame = new Game(a, b);
             return tennisGame;
         }
