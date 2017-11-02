@@ -7,22 +7,31 @@ using NUnit.Framework;
 
 namespace TennisGame
 {
-    
+
     public class TennisGameTest
     {
+        Game tennisGame = new Game();
+        Player a = new Player { Name = "a" };
+        Player b = new Player { Name = "b" };
+
         [Test]
         public void StartGame_Score_should_be_LoveAll()
         {
-            //arrange
-            Game tennisGame = new Game();
-            Player a = new Player{Name = "a"};
-            Player b = new Player{Name = "b"};
-
             //act
-            var actual = tennisGame.ShowScore(a,b);
-            
+            var actual = tennisGame.ShowScore(a, b);
+
             //assert
-            Assert.AreEqual("Love All",actual);
+            Assert.AreEqual("Love All", actual);
+        }
+
+        [Test]
+        public void A_Get1stPoint_Score_should_be_Fifteen_All()
+        {
+            //act
+            var actual = tennisGame.ShowScore(a, b);
+
+            //assert
+            Assert.AreEqual("Fifteen All", actual);
         }
     }
 }
