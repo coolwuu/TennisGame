@@ -44,15 +44,15 @@ namespace TennisGame
 
         private string LateGameLogic()
         {
-            if (FirstPlayerAdvantage())
+            if (!FirstPlayerAdvantage())
             {
-                return "Advantage " + _firstPlayer.Name;
+                if (SecondPlayerAdvantage())
+                {
+                    return "Advantage " + _secondPlayer.Name;
+                }
+                return _firstPlayer.ScoringTimes > _secondPlayer.ScoringTimes ? FirstPlayerWon() : SecondPlayerWon();
             }
-            if (SecondPlayerAdvantage())
-            {
-                return "Advantage " + _secondPlayer.Name;
-            }
-            return _firstPlayer.ScoringTimes > _secondPlayer.ScoringTimes ? FirstPlayerWon() : SecondPlayerWon();
+            return "Advantage " + _firstPlayer.Name;
         }
 
         private string SecondPlayerWon()

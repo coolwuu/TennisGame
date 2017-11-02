@@ -68,6 +68,22 @@ namespace TennisGame
             B_Score(3);
             CurrentScoreIs(_tennisGame, "Game A");
         }
+        [Test]
+        public void When_A_5Points_B_5Points_Score_should_be_Deuce()
+        {
+            _tennisGame = InitialGame();
+            A_Score(5);
+            B_Score(5);
+            CurrentScoreIs(_tennisGame, "Deuce");
+        }
+        [Test]
+        public void When_A_5Points_B_7Points_Score_should_be_Game_B()
+        {
+            _tennisGame = InitialGame();
+            A_Score(5);
+            B_Score(7);
+            CurrentScoreIs(_tennisGame, "Game B");
+        }
 
 
 
