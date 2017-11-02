@@ -20,11 +20,19 @@ namespace TennisGame
         }
 
         [Test] 
-        public void A_Get1stPoint_Score_should_be_Fifteen_All()
+        public void A_Get1stPoint_Score_should_be_Fifteen_Love()
         {
             _tennisGame = InitialGame();
             _tennisGame.FirstPlayerScore();
             CurrentScoreIs(_tennisGame, "Fifteen Love");
+        }
+
+        [Test]
+        public void A_Get2ndPoint_Score_should_be_Thirty_Love()
+        {
+            _tennisGame = InitialGame();
+            _tennisGame.FirstPlayerScore();
+            CurrentScoreIs(_tennisGame, "Thirty Love");
         }
 
         private static Game InitialGame()
