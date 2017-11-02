@@ -4,8 +4,8 @@ namespace TennisGame
 {
     public class Game
     {
-        private Player _firstPlayer;
-        private Player _secondPlayer;
+        private readonly Player _firstPlayer;
+        private readonly Player _secondPlayer;
 
         public Game(Player firstPlayer,Player secondPlayer)
         {
@@ -18,6 +18,11 @@ namespace TennisGame
                 return "Love All";
 
             return _firstPlayer.Score() + " " + _secondPlayer.Score();
+        }
+
+        public void FirstPlayerScore()
+        {
+            _firstPlayer.ScoringTimes += 1;
         }
     }
 }

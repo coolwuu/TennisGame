@@ -31,7 +31,7 @@ namespace TennisGame
             Player b = new Player { Name = "b" };
             Game tennisGame = new Game(a, b);
             //act
-            a.WonAPoint();
+            tennisGame.FirstPlayerScore();
             var actual = tennisGame.ShowScore();
 
             //assert

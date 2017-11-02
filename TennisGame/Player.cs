@@ -8,13 +8,8 @@
         }
 
         public string Name { get; set;}
-        public int ScoringTimes { get; private set; }
+        public int ScoringTimes { get; set; }
         
-        public void WonAPoint()
-        {
-            ScoringTimes += 1;
-        }
-
         public string Score()
         {
             if (ScoringTimes == 0)
