@@ -43,6 +43,16 @@ namespace TennisGame
             CurrentScoreIs(_tennisGame, "Forty Love");
         }
 
+        [Test]
+        public void Both_A_B_Get3rdPoint_Score_should_be_Deuce()
+        {
+            _tennisGame = InitialGame();
+            A_Score(3);
+            CurrentScoreIs(_tennisGame, "Deuce");
+        }
+
+
+
         private static Game InitialGame()
         {
             Player a = new Player { Name = "a" };
