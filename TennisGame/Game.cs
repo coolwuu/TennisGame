@@ -33,10 +33,15 @@ namespace TennisGame
             {
                 return "Advantage " + _firstPlayer.Name;
             }
-            else
+            if (_secondPlayer.ScoringTimes - _firstPlayer.ScoringTimes == 1)
             {
                 return "Advantage " + _secondPlayer.Name;
             }
+            if (_firstPlayer.ScoringTimes - _secondPlayer.ScoringTimes == 2)
+            {
+                return "Game " + _firstPlayer.Name;
+            }
+            return "Game " + _secondPlayer.Name;
         }
 
         public void FirstPlayerWinAPoint()

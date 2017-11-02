@@ -60,6 +60,14 @@ namespace TennisGame
             B_Score(3);
             CurrentScoreIs(_tennisGame, "Advantage A");
         }
+        [Test]
+        public void When_A_5Points_B_3Points_Score_should_be_Game_A()
+        {
+            _tennisGame = InitialGame();
+            A_Score(5);
+            B_Score(3);
+            CurrentScoreIs(_tennisGame, "Game A");
+        }
 
 
 
