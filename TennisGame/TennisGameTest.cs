@@ -1,9 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Media;
-using System.Text;
-using System.Threading.Tasks;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace TennisGame
 {
@@ -11,102 +6,93 @@ namespace TennisGame
     public class TennisGameTest
     {
         private Game _tennisGame;
-
+        [SetUp]
+        public void Setup()
+        {
+            _tennisGame = InitialGame();
+        }
         [Test]
         public void StartGame_Score_should_be_LoveAll()
         {
-            _tennisGame = InitialGame();
-            CurrentScoreIs(_tennisGame, "Love All");
+            CurrentScoreIs("Love All");
         }
-
         [Test] 
-        public void A_Get1stPoint_Score_should_be_Fifteen_Love()
+        public void PlayerA_Get1Point_Score_should_be_Fifteen_Love()
         {
-            _tennisGame = InitialGame();
-            A_Score(1);
-            CurrentScoreIs(_tennisGame, "Fifteen Love");
-        }
-
-        [Test]
-        public void A_Get2ndPoint_Score_should_be_Thirty_Love()
-        {
-            _tennisGame = InitialGame();
-            A_Score(2);
-            CurrentScoreIs(_tennisGame, "Thirty Love");
-        }
-
-        [Test]
-        public void A_Get3rdPoint_Score_should_be_Forty_Love()
-        {
-            _tennisGame = InitialGame();
-            A_Score(3);
-            CurrentScoreIs(_tennisGame, "Forty Love");
-        }
-
-        [Test]
-        public void Both_A_B_Get3rdPoint_Score_should_be_Deuce()
-        {
-            _tennisGame = InitialGame();
-            A_Score(3);
-            B_Score(3);
-            CurrentScoreIs(_tennisGame, "Deuce");
-        }
-
-        [Test]
-        public void When_A_4Points_B_3Points_Score_should_be_Advantage_A()
-        {
-            _tennisGame = InitialGame();
-            A_Score(4);
-            B_Score(3);
-            CurrentScoreIs(_tennisGame, "Advantage A");
+            PlayerA_Score(1);
+            CurrentScoreIs("Fifteen Love");
         }
         [Test]
-        public void When_A_5Points_B_3Points_Score_should_be_Game_A()
+        public void PlayerA_Get2Point_Score_should_be_Thirty_Love()
         {
-            _tennisGame = InitialGame();
-            A_Score(5);
-            B_Score(3);
-            CurrentScoreIs(_tennisGame, "Game A");
+            PlayerA_Score(2);
+            CurrentScoreIs("Thirty Love");
         }
         [Test]
-        public void When_A_5Points_B_5Points_Score_should_be_Deuce()
+        public void PlayerA_Get3Point_Score_should_be_Forty_Love()
         {
-            _tennisGame = InitialGame();
-            A_Score(5);
-            B_Score(5);
-            CurrentScoreIs(_tennisGame, "Deuce");
+            PlayerA_Score(3);
+            CurrentScoreIs("Forty Love");
         }
         [Test]
-        public void When_A_5Points_B_7Points_Score_should_be_Game_B()
+        public void Both_Players_Get3Point_Score_should_be_Deuce()
         {
-            _tennisGame = InitialGame();
-            A_Score(5);
-            B_Score(7);
-            CurrentScoreIs(_tennisGame, "Game B");
+            PlayerA_Score(3);
+            PlayerB_Score(3);
+            CurrentScoreIs("Deuce");
         }
-
-
-
+        [Test]
+        public void When_PlayerA_4Points_PlayerB_3Points_Score_should_be_Advantage_A()
+        {
+            PlayerA_Score(4);
+            PlayerB_Score(3);
+            CurrentScoreIs("Advantage A");
+        }
+        [Test]
+        public void When_PlayerA_5Points_PlayerB_3Points_Score_should_be_Game_A()
+        {
+            PlayerA_Score(5);
+            PlayerB_Score(3);
+            CurrentScoreIs("Game A");
+        }
+        [Test]
+        public void When_PlayerA_5Points_PlayerB_5Points_Score_should_be_Deuce()
+        {
+            PlayerA_Score(5);
+            PlayerB_Score(5);
+            CurrentScoreIs("Deuce");
+        }
+        [Test]
+        public void When_PlayerA_5Points_PlayerB_7Points_Score_should_be_Game_B()
+        {
+            PlayerA_Score(5);
+            PlayerB_Score(7);
+            CurrentScoreIs("Game B");
+        }
+        [Test]
+        public void When_PlayerA_2Points_PlayerB_1Point_Score_should_be_Thirty_Fifteen()
+        {
+            PlayerA_Score(2);
+            PlayerB_Score(1);
+            CurrentScoreIs("Thirty Fifteen");
+        }
         private static Game InitialGame()
         {
-            Player a = new Player { Name = "A" };
-            Player b = new Player { Name = "B" };
-            Game tennisGame = new Game(a, b);
-            return tennisGame;
+            var a = new Player { Name = "A" };
+            var b = new Player { Name = "B" };
+            return new Game(a, b);
         }
-
-        private static void CurrentScoreIs(Game tennisGame, string expected)
+        private void CurrentScoreIs(string expected)
         {
-            var actual = tennisGame.ShowScore();
+            var actual = _tennisGame.ShowScore();
             Assert.AreEqual(expected, actual);
         }
-
-        private void A_Score(int times)
+        private void PlayerA_Score(int times)
         {
             for(var i = 1; i <= times;i++)
                 _tennisGame.FirstPlayerWinAPoint();
         }
-        private void B_Score(int times)
+        private void PlayerB_Score(int times)
         {
             for(var i = 1; i <= times;i++)
                 _tennisGame.SecondPlayerWinAPoint();
